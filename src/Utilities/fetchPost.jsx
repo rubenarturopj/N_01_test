@@ -64,8 +64,8 @@ export async function fetchPost(inputData) {
             },
         ],
     };
-    console.log(`this is the new JSON i want to send`);
-    console.log(userInfoJSON);
+    // console.log(`this is the new JSON i want to send`);
+    // console.log(userInfoJSON);
     // End of creating the json in the requested format ****************************
 
     const options = {
@@ -74,8 +74,8 @@ export async function fetchPost(inputData) {
         body: JSON.stringify(userInfoJSON),
     };
 
-    console.log(`this is the body already stringified of the JSON I'm sending`);
-    console.log(options.body);
+    // console.log(`this is the body already stringified of the JSON I'm sending`);
+    // console.log(options.body);
 
     try {
         const response = await fetch(url, options);

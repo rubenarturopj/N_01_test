@@ -67,10 +67,10 @@ export function Inscription() {
             postal_code: data.get("post_code"),
             country: country,
         };
-        console.log(
-            `this is the data collected from the form to be sent through POST method`
-        );
-        console.log(inputData);
+        // console.log(
+        //     `this is the data collected from the form to be sent through POST method`
+        // );
+        // console.log(inputData);
 
         setUserName(inputData.first_name); // to grab the name of the USER
 
@@ -87,12 +87,12 @@ export function Inscription() {
             setIsSubmitted(false);
         } else {
             const result = await fetchPost(inputData);
-            console.log(
-                `this is the response from the API after fetch POST-ing`
-            );
-            console.log(result);
-            console.log(Object.keys(result));
-            console.log(Object.values(result));
+            // console.log(
+            //     `this is the response from the API after fetch POST-ing`
+            // );
+            // console.log(result);
+            // console.log(Object.keys(result));
+            // console.log(Object.values(result));
 
             if (
                 Object.keys(result) === "success" &&
