@@ -1,0 +1,59 @@
+body {
+    background-color: #f3f3f3;
+}
+
+.color-nav {
+    background-color: #0c0c0c;
+}
+
+#RaleNav {
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+}
+
+#bold {
+    color: #dac9b7;
+}
+
+.MainContentContainer {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    z-index: 2;
+}
+
+.MainCenter {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#name {
+    font-weight: 700;
+    color: #d9b85e;
+}
+
+#changeNameinput {
+    width: 30%;
+}
+
+/* MEDIA QUERY FOR TABLETS */
+/* 1024px and below*/
+@media screen and (max-width: 1024px) {
+    #changeNameinput {
+        width: 50%;
+    }
+}
+
+/* MEDIA QUERY FOR PHONES */
+/* 600px and below*/
+@media screen and (max-width: 600px) {
+    .navbar {
+        width: 100%;
+    }
+    #changeNameinput {
+        width: 80%;
+    }
+    .MainContentContainer {
+        margin-top: 2rem;
+    }
+}
