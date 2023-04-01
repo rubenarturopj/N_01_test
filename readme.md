@@ -2,6 +2,10 @@
 
 **This is a static portion of a website, which in turn was challenge from a job interview.**
 
+## DEMO
+
+https://6427738ed8ba4218bd0a5b5d--dashing-griffin-27194f.netlify.app/
+
 ## Installation
 
 -   After cloning the project, open a terminal and run _npm i_ , this will install all packages.
