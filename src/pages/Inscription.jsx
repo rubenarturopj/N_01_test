@@ -11,11 +11,20 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+    FormControl,
+    IconButton,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    OutlinedInput,
+    Select,
+} from "@mui/material";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { fetchPost } from "../Utilities/fetchPost";
 import { useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const theme = createTheme();
 
@@ -36,9 +45,13 @@ export function Inscription() {
     };
     // END of dropdown menu ************
 
-    // State that will carry the name of the person ****************
+    // Start of state that will carry the name of the person ****************
     const [userName, setUserName] = useState("");
     // End of state that will carry the name of the person **********
+
+    // Start of extra state to catch the phone number ******
+    const [phoneNumber, setPhoneNumber] = useState("");
+    // End of extra state to catch the phone number ******
 
     // Start of submitting the form *********
     const [isSubmitted, setIsSubmitted] = useState(false); // form is perfect and authorized to proceed
@@ -62,7 +75,8 @@ export function Inscription() {
             first_name: data.get("first_name"),
             last_name: data.get("last_name"),
             email: data.get("email"),
-            phone: data.get("phone_number"),
+            // phone: data.get("phone_number"),
+            phone: phoneNumber,
             street: data.get("street_address"),
             postal_code: data.get("post_code"),
             country: country,
@@ -162,12 +176,18 @@ export function Inscription() {
             setEmailError(false);
         }
     };
-    // start of phone validation and masking ********************
+    // start of PHONEEEE validation and masking ********************
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
     const [phoneValue, setPhoneValue] = useState("");
     const [phoneError, setPhoneError] = useState(false);
-    const [maskedPhone, setMaskedPhone] = useState("");
     const handlePhoneErrors = (event) => {
         setPhoneValue(event.target.value);
+        setPhoneNumber(phoneValue);
 
         // Validate the text field for phone
 
@@ -180,14 +200,6 @@ export function Inscription() {
         } else {
             setPhoneError(false);
         }
-    };
-
-    const hidePhoneNumber = (phoneNumber) => {
-        let hiddenPhoneNumber = "";
-        for (let i = 0; i < phoneNumber.length; i++) {
-            hiddenPhoneNumber += `*`;
-        }
-        return hiddenPhoneNumber;
     };
     // end of phone validation and masking ********************
 
@@ -338,34 +350,49 @@ export function Inscription() {
                                         : ""
                                 }
                             />
-                            <TextField
+                            <FormControl
+                                fullWidth
+                                variant="outlined"
                                 margin="dense"
                                 required
-                                fullWidth
                                 id="phone_number"
-                                label="Téléphone"
                                 name="phone_number"
                                 type="text"
                                 autoComplete="phone_number"
-                                error={phoneError}
-                                value={phoneValue}
-                                onChange={handlePhoneErrors}
-                                helperText={
-                                    phoneError
-                                        ? "Utilisez un des formats suivants : (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725."
-                                        : ""
-                                }
-                            />
-                            {/* <Typography
-                                component="h1"
-                                variant="subtitle1"
-                                style={{
-                                    marginTop: "0.3rem",
-                                    marginBottom: "-1rem",
-                                }}
+                                sx={{ mb: "-0.05rem" }}
                             >
-                                Votre adresse
-                            </Typography> */}
+                                <InputLabel htmlFor="outlined-adornment-password">
+                                    Téléphone
+                                </InputLabel>
+                                <OutlinedInput
+                                    onChange={handlePhoneErrors}
+                                    error={phoneError} // makes the outline red
+                                    id="outlined-adornment-password"
+                                    type={showPassword ? "text" : "password"}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={
+                                                    handleClickShowPassword
+                                                }
+                                                onMouseDown={
+                                                    handleMouseDownPassword
+                                                }
+                                                edge="end"
+                                            >
+                                                {showPassword ? (
+                                                    <VisibilityOff />
+                                                ) : (
+                                                    <Visibility />
+                                                )}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    label="phone_number"
+                                />
+                                {phoneError ? <AlertMessagePhoneError /> : null}
+                            </FormControl>
                             <TextField
                                 margin="normal"
                                 required
@@ -483,6 +510,18 @@ function AlertMessageSuccess() {
                     patienter.
                 </Alert>
             </Stack>
+        </>
+    );
+}
+
+function AlertMessagePhoneError() {
+    return (
+        <>
+            <p id="helper-text-1">
+                Utilisez un des formats suivants : (123) 456-7890,
+                (123)456-7890, 123-456-7890, 123.456.7890, 1234567890,
+                +31636363634, 075-63546725.
+            </p>
         </>
     );
 }

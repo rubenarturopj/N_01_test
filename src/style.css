@@ -36,6 +36,15 @@ body {
     width: 30%;
 }
 
+#helper-text-1 {
+    font-size: 0.71rem;
+    color: red;
+    margin-top: 0.3rem;
+    margin-bottom: -0.1rem;
+    margin-left: 0.8rem;
+    margin-right: 0.6rem;
+}
+
 /* MEDIA QUERY FOR TABLETS */
 /* 1024px and below*/
 @media screen and (max-width: 1024px) {
