@@ -4,7 +4,7 @@
 
 ## DEMO
 
-https://6427738ed8ba4218bd0a5b5d--dashing-griffin-27194f.netlify.app/
+https://dashing-griffin-27194f.netlify.app/
 
 ## Installation
 
