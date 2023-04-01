@@ -58,15 +58,21 @@ export function Inscription() {
     const [formHasErrors, setFormHasErrors] = useState(false); // the form has errors
     const [countryIsSelected, setCountryIsSelected] = useState(false); // to check if a country was selected from the dropdown menu
     const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
+    const [displayErrorCountryMessage, setDisplayErrorCountryMessage] =
+        useState(false);
     // const [isFormApproved, setIsFormApproved] = useState(false);
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsSubmitted(true);
         if (country === "") {
             setCountryIsSelected(false);
+            setDisplayErrorCountryMessage(true);
+            setTimeout(() => {
+                setDisplayErrorCountryMessage(false);
+            }, 1500);
             return;
         } else {
             setCountryIsSelected(true);
+            setIsSubmitted(true);
         }
 
         const data = new FormData(event.currentTarget);
@@ -462,7 +468,7 @@ export function Inscription() {
                                     })}
                                 </Select>
                             </FormControl>
-                            {isSubmitted && !countryIsSelected && (
+                            {displayErrorCountryMessage && (
                                 <AlertMessageError />
                             )}
                             {displaySuccessMessage && <AlertMessageSuccess />}
