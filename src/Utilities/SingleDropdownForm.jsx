@@ -1,10 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 
-// Start of variable that will be retrieved in MyForms. Carries the value of the country chosen
-export let ccountry = "";
-// End of variable that will be retrieve in MyForms **********************************
-
 export function SingleDropdownForm({ data }) {
     const { label, name, type } = data;
     const optionsArray = data.options;
@@ -16,7 +12,6 @@ export function SingleDropdownForm({ data }) {
     const handleChange = (event) => {
         setCountry(event.target.value);
         // console.log(country);
-        ccountry = event.target.value;
     };
     // END of dropdown menu ************
 
