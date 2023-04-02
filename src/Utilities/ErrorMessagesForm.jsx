@@ -86,6 +86,20 @@ function AlertMessageSuccess() {
     );
 }
 
+function AlertMessageErrorForm() {
+    return (
+        <>
+            <Stack sx={{ width: "100%" }} marginTop="1rem">
+                <Alert severity="error">
+                    Des erreurs se sont produites au moment de traiter votre
+                    demande. Veuillez vérifier vos données et essayer une autre
+                    fois.
+                </Alert>
+            </Stack>
+        </>
+    );
+}
+
 export {
     AlertMessageFirstNameError,
     AlertMessageLastNameError,
@@ -95,4 +109,5 @@ export {
     AlertMessagePostalCodeError,
     AlertMessageErrorCountry,
     AlertMessageSuccess,
+    AlertMessageErrorForm,
 };
