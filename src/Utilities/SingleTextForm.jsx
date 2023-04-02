@@ -33,15 +33,19 @@ export function SingleTextForm({ data }) {
         if (id === "first_name") {
             if (event.target.value.length < 2) {
                 setFirstNameError(true);
+                firstNameErrorEXPORT = true;
             } else {
                 setFirstNameError(false);
+                firstNameErrorEXPORT = "";
             }
         }
         if (id === "last_name") {
             if (event.target.value.length < 2) {
                 setLastNameError(true);
+                lastNameErrorEXPORT = true;
             } else {
                 setLastNameError(false);
+                lastNameErrorEXPORT = "";
             }
         }
         if (id === "email") {
@@ -49,8 +53,10 @@ export function SingleTextForm({ data }) {
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (!pattern.test(event.target.value)) {
                 setEmailError(true);
+                emailErrorEXPORT = true;
             } else {
                 setEmailError(false);
+                emailErrorEXPORT = "";
             }
         }
         if (id === "phone_number") {
@@ -59,23 +65,28 @@ export function SingleTextForm({ data }) {
             // Fomats supported: (123) 456-7890, (123)456-7890, 123-456-7890, 123.456.7890, 1234567890, +31636363634, 075-63546725
             if (!pattern.test(event.target.value)) {
                 setPhoneError(true);
-                // setMaskedPhone(`*********`);
+                phoneErrorEXPORT = true;
             } else {
                 setPhoneError(false);
+                phoneErrorEXPORT = "";
             }
         }
         if (id === "street_address") {
             if (event.target.value.length < 10) {
                 setAddressError(true);
+                addressErrorEXPORT = true;
             } else {
                 setAddressError(false);
+                addressErrorEXPORT = "";
             }
         }
         if (id === "post_code") {
             if (event.target.value.length < 5) {
                 setCodePostalError(true);
+                codePostalErrorEXPORT = true;
             } else {
                 setCodePostalError(false);
+                codePostalErrorEXPORT = "";
             }
         }
     };
