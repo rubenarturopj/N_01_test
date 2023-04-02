@@ -3,12 +3,13 @@ import { fetchPost } from "../Utilities/fetchPost";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import JSONfile from "./data";
-import { SingleDropdownForm, ccountry } from "./SingleDropdownForm";
+import { SingleDropdownForm } from "./SingleDropdownForm";
 import { SingleTextForm } from "./SingleTextForm";
 import Button from "@mui/material/Button";
 import {
     AlertMessageErrorCountry,
     AlertMessageSuccess,
+    AlertMessageErrorForm,
 } from "./ErrorMessagesForm";
 import {
     firstNameErrorEXPORT,
@@ -20,8 +21,6 @@ import {
 } from "./SingleTextForm";
 
 // console.log(JSONfile);
-// console.log(ccountry);
-// console.log(ccountry.length);
 
 export default function MyForms() {
     const bigArray = [
@@ -44,7 +43,10 @@ export default function MyForms() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (ccountry === "") {
+
+        const data = new FormData(event.currentTarget);
+
+        if (data.get("country") === "") {
             setCountryIsSelected(false);
             setDisplayErrorCountryMessage(true);
             setTimeout(() => {
@@ -56,24 +58,6 @@ export default function MyForms() {
             setIsSubmitted(true);
         }
 
-        const data = new FormData(event.currentTarget);
-
-        const inputData = {
-            first_name: data.get("first_name"),
-            last_name: data.get("last_name"),
-            email: data.get("email"),
-            phone: data.get("phone_number"),
-            street: data.get("street_address"),
-            postal_code: data.get("post_code"),
-            country: ccountry,
-        };
-        console.log(
-            `this is the data collected from the form to be sent through POST method`
-        );
-        console.log(inputData);
-
-        setUserName(inputData.first_name); // to grab the name of the USER
-
         if (
             firstNameErrorEXPORT ||
             lastNameErrorEXPORT ||
@@ -81,28 +65,47 @@ export default function MyForms() {
             phoneErrorEXPORT ||
             addressErrorEXPORT ||
             codePostalErrorEXPORT ||
-            countryIsSelected
+            !countryIsSelected
         ) {
             setFormHasErrors(true);
             setIsSubmitted(false);
         } else {
+            const inputData = {
+                first_name: data.get("first_name"),
+                last_name: data.get("last_name"),
+                email: data.get("email"),
+                phone: data.get("phone_number"),
+                street: data.get("street_address"),
+                postal_code: data.get("post_code"),
+                country: data.get("country"),
+            };
+            console.log(
+                `this is the data collected from the form to be sent through POST method`
+            );
+            console.log(inputData);
+
+            setUserName(inputData.first_name); // to grab the name of the USER
+
+            setFormHasErrors(false);
             const result = await fetchPost(inputData);
             console.log(
                 `this is the response from the API after fetch POST-ing`
             );
             console.log(result);
-            console.log(Object.keys(result));
-            console.log(Object.values(result));
+            console.log(Object.keys(result)[0]);
+            console.log(Object.values(result)[0]);
 
             if (
-                Object.keys(result) === "success" &&
-                Object.values(result) === true
+                Object.keys(result)[0] === "success" &&
+                Object.values(result)[0] === true
             ) {
                 setIsSubmitted(true);
                 setFormHasErrors(false);
+                console.log("it went correctly well");
             } else {
                 setIsSubmitted(false);
                 setFormHasErrors(true);
+                console.log("i shouldnt be here");
             }
         }
     };
@@ -141,6 +144,7 @@ export default function MyForms() {
                 <Box style={{ textAlign: "center" }}>
                     {displayErrorCountryMessage && <AlertMessageErrorCountry />}
                     {displaySuccessMessage && <AlertMessageSuccess />}
+                    {formHasErrors && <AlertMessageErrorForm />}
                     <Button
                         type="submit"
                         variant="contained"
