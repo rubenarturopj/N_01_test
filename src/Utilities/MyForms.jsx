@@ -45,18 +45,18 @@ export default function MyForms() {
         event.preventDefault();
 
         const data = new FormData(event.currentTarget);
+        const countryVerification = data.get("country");
 
-        if (data.get("country") === "") {
+        if (countryVerification === "") {
             setCountryIsSelected(false);
             setDisplayErrorCountryMessage(true);
             setTimeout(() => {
                 setDisplayErrorCountryMessage(false);
             }, 1500);
             return;
-        } else {
-            setCountryIsSelected(true);
-            setIsSubmitted(true);
         }
+        setCountryIsSelected(true);
+        setIsSubmitted(true);
 
         if (
             firstNameErrorEXPORT ||
@@ -64,8 +64,7 @@ export default function MyForms() {
             emailErrorEXPORT ||
             phoneErrorEXPORT ||
             addressErrorEXPORT ||
-            codePostalErrorEXPORT ||
-            !countryIsSelected
+            codePostalErrorEXPORT
         ) {
             setFormHasErrors(true);
             setIsSubmitted(false);
@@ -92,8 +91,8 @@ export default function MyForms() {
                 `this is the response from the API after fetch POST-ing`
             );
             console.log(result);
-            console.log(Object.keys(result)[0]);
-            console.log(Object.values(result)[0]);
+            // console.log(Object.keys(result)[0]);
+            // console.log(Object.values(result)[0]);
 
             if (
                 Object.keys(result)[0] === "success" &&
@@ -105,7 +104,7 @@ export default function MyForms() {
             } else {
                 setIsSubmitted(false);
                 setFormHasErrors(true);
-                console.log("i shouldnt be here");
+                console.log("there was an error");
             }
         }
     };

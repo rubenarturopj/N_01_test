@@ -10,12 +10,12 @@ import {
 } from "./ErrorMessagesForm";
 
 // Start of  Data / errors to be retrieved and used in MyFORMS ********
-export let firstNameErrorEXPORT = "";
-export let lastNameErrorEXPORT = "";
-export let emailErrorEXPORT = "";
-export let phoneErrorEXPORT = "";
-export let addressErrorEXPORT = "";
-export let codePostalErrorEXPORT = "";
+export let firstNameErrorEXPORT = false;
+export let lastNameErrorEXPORT = false;
+export let emailErrorEXPORT = false;
+export let phoneErrorEXPORT = false;
+export let addressErrorEXPORT = false;
+export let codePostalErrorEXPORT = false;
 //   End of  Data / errors to be retrieved and used in MyFORMS ********
 
 export function SingleTextForm({ data }) {
@@ -36,7 +36,7 @@ export function SingleTextForm({ data }) {
                 firstNameErrorEXPORT = true;
             } else {
                 setFirstNameError(false);
-                firstNameErrorEXPORT = "";
+                firstNameErrorEXPORT = false;
             }
         }
         if (id === "last_name") {
@@ -45,7 +45,7 @@ export function SingleTextForm({ data }) {
                 lastNameErrorEXPORT = true;
             } else {
                 setLastNameError(false);
-                lastNameErrorEXPORT = "";
+                lastNameErrorEXPORT = false;
             }
         }
         if (id === "email") {
@@ -56,7 +56,7 @@ export function SingleTextForm({ data }) {
                 emailErrorEXPORT = true;
             } else {
                 setEmailError(false);
-                emailErrorEXPORT = "";
+                emailErrorEXPORT = false;
             }
         }
         if (id === "phone_number") {
@@ -68,7 +68,7 @@ export function SingleTextForm({ data }) {
                 phoneErrorEXPORT = true;
             } else {
                 setPhoneError(false);
-                phoneErrorEXPORT = "";
+                phoneErrorEXPORT = false;
             }
         }
         if (id === "street_address") {
@@ -77,7 +77,7 @@ export function SingleTextForm({ data }) {
                 addressErrorEXPORT = true;
             } else {
                 setAddressError(false);
-                addressErrorEXPORT = "";
+                addressErrorEXPORT = false;
             }
         }
         if (id === "post_code") {
@@ -86,7 +86,7 @@ export function SingleTextForm({ data }) {
                 codePostalErrorEXPORT = true;
             } else {
                 setCodePostalError(false);
-                codePostalErrorEXPORT = "";
+                codePostalErrorEXPORT = false;
             }
         }
     };
