@@ -40,6 +40,14 @@ export function Merci() {
     };
     // End of changing the name with input ******************
 
+    // start of submitting form ********
+    const handleSubmit = () => {
+        event.preventDefault();
+        console.log("key 13 (enter) was pressed, submitting is deactivated");
+        return false;
+    };
+    // end of submitting the form *********
+
     return (
         <>
             <Paper className="MainContentContainer MainCenter">
@@ -69,6 +77,7 @@ export function Merci() {
                             , pour votre inscription.
                         </h1>
                         <Form
+                            onSubmit={handleSubmit}
                             style={{
                                 marginTop: "2.5rem",
                                 marginBottom: "2rem",
