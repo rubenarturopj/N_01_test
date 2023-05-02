@@ -10,7 +10,7 @@ export function NavBar() {
             <Container>
                 <Nav>
                     <Navbar.Brand href="/" id="RaleNav">
-                        <strong id="bold">Neo</strong>legal
+                        <strong id="bold">Your</strong>company
                     </Navbar.Brand>
                 </Nav>
             </Container>
