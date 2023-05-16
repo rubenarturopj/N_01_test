@@ -16,7 +16,7 @@ https://dashing-griffin-27194f.netlify.app/
 #### React + Vite
 
 ```sh
-npm i create vite@latest
+npm create vite@latest
 ```
 
 #### React Router
